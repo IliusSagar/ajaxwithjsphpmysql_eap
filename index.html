@@ -5,36 +5,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Ajax</title>
 
-	<script src="jquery-3.3.1.min.js"></script>
+		
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	
+
+	<!-- <script src="jquery-3.3.1.min.js"></script> -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
 
 	<div class="container">
-		<div id="loaddata">
-			<h3> this is goning to be change... </h3>
-		</div>
-
-		<button class="btn btn-primary" onclick="myfun()"> CHECK </button>
+		<p id="changehere"> This line is going to be change.. </p>
+		<button class="btn btn-primary btnclick"> click </button> <!-- onclick="myFunction()" -->
 	</div>
-	
 
 	<script type="text/javascript">
 
-		function myfun(){
+		$(document).ready(function(){
+			$('.btnclick').click(function(){
 
-			var req = new XMLHttpRequest();
-			req.open('GET','load.html',true);
-			req.send();
+				$.get('get.html',function(data,status){
+					$('#changehere').html(data);
+					alert(status);
+				});
 
-			req.onreadystatechange =function(){
-				if(req.readyState == 4 && req.status == 200){
-					document.getElementById('loaddata').innerHTML = req.responseText;
-				}
-			}
+			});
+		});
 
-		}
+		// function myFunction() {
+  // 			alert("I am an alert box!");
+		// }
 		
 	</script>
 	
