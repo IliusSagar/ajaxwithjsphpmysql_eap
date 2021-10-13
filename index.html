@@ -11,21 +11,30 @@
 </head>
 <body>
 
-
 	<div class="container">
-		<div id="loaddata"> <h2> this is going to be change... </h2> </div>
-		<button class="btn btn-success" id="btnclick"> click on it </button>
+		<div id="loaddata">
+			<h3> this is goning to be change... </h3>
+		</div>
+
+		<button class="btn btn-primary" onclick="myfun()"> CHECK </button>
 	</div>
+	
 
 	<script type="text/javascript">
 
-		$(document).ready(function(){
-			$('#btnclick').click(function(){
-				$('#loaddata').load('load.html', function(){
-					alert("this is done..");
-				});
-			})
-		});
+		function myfun(){
+
+			var req = new XMLHttpRequest();
+			req.open('GET','load.html',true);
+			req.send();
+
+			req.onreadystatechange =function(){
+				if(req.readyState == 4 && req.status == 200){
+					document.getElementById('loaddata').innerHTML = req.responseText;
+				}
+			}
+
+		}
 		
 	</script>
 	
